@@ -84,6 +84,32 @@ namespace Produkterkenner
             lb1.ItemsSource = obs;
         }
 
+        private void Hinzufuegen_Click(object sender, RoutedEventArgs e)
+        {
+            DateiLesen();
+        }
+
+        private void Entfernen_Click(object sender, RoutedEventArgs e)
+        {
+            //Ausgewähltes Produkt
+            int index = lb1.SelectedIndex;
+            //wenn keines ausgewählt wurde -> Exception
+            if (index < 0)
+                throw new Exception("Kein Element ausgewählt");
+            else
+            {
+                //Der ausgewählte Element wird vom Preis subtrahiert
+                lb_preis.Content = String.Format("{0:0,0.00}", Convert.ToDouble(lb_preis.Content.ToString().Substring(0, lb_preis.Content.ToString().Length - 1)) - obs[index].Preis) + "€";
+                //Löscht das Element
+                obs.RemoveAt(index);
+            }
+        }
+
+        private void Beenden_Click(object sender, RoutedEventArgs e)
+        {
+            Close();
+        }
+
 
     }
 }
