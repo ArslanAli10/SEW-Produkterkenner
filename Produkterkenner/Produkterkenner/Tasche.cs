@@ -8,8 +8,8 @@ namespace Produkterkenner
 {
     class Tasche : Kategorie
     {
-        public double Größe { get; set; }
-        public string Farbe { get; set; }
+        private double Größe { get; set; }
+        private string Farbe { get; set; }
 
         public Tasche(int seriennummer, string kategorie, string marke, string modell, double größe, string farbe, double preis) : base(seriennummer, kategorie, marke, modell, preis)
         {

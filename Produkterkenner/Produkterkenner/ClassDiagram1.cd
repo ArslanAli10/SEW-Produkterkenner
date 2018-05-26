@@ -1,0 +1,51 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="Produkterkenner.Handy">
+    <Position X="2" Y="3.25" Width="1.5" />
+    <InheritanceLine Type="Produkterkenner.Kategorie" ManuallyRouted="true" FixedFromPoint="true">
+      <Path>
+        <Point X="5.812" Y="3.017" />
+        <Point X="5.812" Y="3.589" />
+        <Point X="4.263" Y="3.589" />
+        <Point X="4.263" Y="4.73" />
+        <Point X="3.5" Y="4.73" />
+      </Path>
+    </InheritanceLine>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAEIAAACAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Handy.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Produkterkenner.Kategorie">
+    <Position X="5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAEAAAAAQAAAAQAAAEAAAgACAAAAAA=</HashCode>
+      <FileName>Kategorie.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Produkterkenner.Tasche">
+    <Position X="7.25" Y="3.25" Width="1.5" />
+    <InheritanceLine Type="Produkterkenner.Kategorie" ManuallyRouted="true" FixedFromPoint="true">
+      <Path>
+        <Point X="5.812" Y="3.017" />
+        <Point X="5.812" Y="3.634" />
+        <Point X="6.776" Y="3.634" />
+        <Point X="6.776" Y="4.28" />
+        <Point X="7.25" Y="4.28" />
+      </Path>
+    </InheritanceLine>
+    <TypeIdentifier>
+      <HashCode>AAAAAAACAAAAAAAEAAAAAAAAAAAAAAAAAAAABAAAAAA=</HashCode>
+      <FileName>Tasche.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Produkterkenner.MainWindow">
+    <Position X="7.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAgAAAAAAAAAIAEEAAAAAAAAAAAAAAAAIAAAAAAAAAA=</HashCode>
+      <FileName>MainWindow.xaml.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

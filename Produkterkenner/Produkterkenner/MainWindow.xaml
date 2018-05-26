@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Produkterkenner"
         mc:Ignorable="d"
-       Title="MainWindow" Height="470.605" Width="849.26">
+       Title="MainWindow" Height="484.105" Width="909.26">
     <Grid Background="#FF930000">
         <Label Content="ARTIKELNUMMER" HorizontalAlignment="Center" Margin="375,10,350,0" VerticalAlignment="Top" Width="116" Background="#FFA08A00" FontWeight="Bold" HorizontalContentAlignment="Center"/>
         <TextBox x:Name="tb_artikelnummer" HorizontalAlignment="Center" Margin="314,41,305,0" TextWrapping="Wrap" Width="222" Height="26" VerticalAlignment="Top" SelectionBrush="{x:Null}" Background="Black" BorderBrush="#FFD1B504" Foreground="White" HorizontalContentAlignment="Center" FontWeight="Bold" VerticalContentAlignment="Center"/>

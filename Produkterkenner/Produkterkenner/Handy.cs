@@ -8,8 +8,8 @@ namespace Produkterkenner
 {
     class Handy : Kategorie
     {
-        public double Zoll { get; set; }
-        public int Speicherplatz { get; set; }
+        private double Zoll { get; set; }
+        private int Speicherplatz { get; set; }
 
         public Handy(int seriennummer, string kategorie, string marke, string modell, double zoll, int speicherplatz, double preis) : base(seriennummer, kategorie, marke, modell, preis)
         {

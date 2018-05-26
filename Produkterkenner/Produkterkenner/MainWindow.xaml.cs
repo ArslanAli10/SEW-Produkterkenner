@@ -76,7 +76,7 @@ namespace Produkterkenner
             }
         }
 
-        
+
         public MainWindow()
         {
             InitializeComponent();
@@ -88,6 +88,7 @@ namespace Produkterkenner
         {
             DateiLesen();
         }
+        
 
         private void Entfernen_Click(object sender, RoutedEventArgs e)
         {
@@ -109,7 +110,6 @@ namespace Produkterkenner
         {
             Close();
         }
-
 
     }
 }
