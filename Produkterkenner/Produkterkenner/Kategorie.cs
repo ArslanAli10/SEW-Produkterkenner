@@ -13,7 +13,6 @@ namespace Produkterkenner
         public string Marke { get; set; }
         public string Modell { get; set; }
         public double Preis { get; set; }
-
         public Kategorie(int seriennummer, string kategorie, string marke, string modell, double preis)
         {
             Seriennummer = seriennummer;

@@ -5,11 +5,11 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Produkterkenner"
         mc:Ignorable="d"
-       Title="MainWindow" Height="484.105" Width="909.26">
+       Title="*PRODUKTERKENNER* by ArslanAli" Height="550.105" Width="1045.26">
     <Grid Background="#FF930000">
-        <Label Content="ARTIKELNUMMER" HorizontalAlignment="Center" Margin="375,10,350,0" VerticalAlignment="Top" Width="116" Background="#FFA08A00" FontWeight="Bold" HorizontalContentAlignment="Center"/>
-        <TextBox x:Name="tb_artikelnummer" HorizontalAlignment="Center" Margin="314,41,305,0" TextWrapping="Wrap" Width="222" Height="26" VerticalAlignment="Top" SelectionBrush="{x:Null}" Background="Black" BorderBrush="#FFD1B504" Foreground="White" HorizontalContentAlignment="Center" FontWeight="Bold" VerticalContentAlignment="Center"/>
-        <StackPanel Orientation="Horizontal" Width="{Binding}" Height="58" Margin="173,95,172,0" HorizontalAlignment="Center" VerticalAlignment="Top">
+        <Label Content="SERIENNUMMER:" HorizontalAlignment="Center" Margin="697,15,224,0" VerticalAlignment="Top" Width="116" Background="#FFA08A00" FontWeight="Bold" HorizontalContentAlignment="Center"/>
+        <TextBox x:Name="tb_artikelnummer" HorizontalAlignment="Center" Margin="643,41,172,0" TextWrapping="Wrap" Width="222" Height="26" VerticalAlignment="Top" SelectionBrush="{x:Null}" Background="Black" BorderBrush="#FFD1B504" Foreground="White" HorizontalContentAlignment="Center" FontWeight="Bold" VerticalContentAlignment="Center"/>
+        <StackPanel Orientation="Horizontal" Width="{Binding}" Height="58" Margin="500,81,41,0" HorizontalAlignment="Center" VerticalAlignment="Top">
             <Button Content="HINZUFÜGEN" HorizontalAlignment="Left" VerticalAlignment="Top" Width="136" Height="58" Click="Hinzufuegen_Click" Foreground="White" FontWeight="Bold" FontSize="16" FontStyle="Italic">
                 <Button.Background>
                     <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
@@ -24,7 +24,7 @@
                     </LinearGradientBrush>
                 </Button.BorderBrush>
             </Button>
-            <Button Content="ENTFERNEN" HorizontalAlignment="Left" VerticalAlignment="Top" Width="130" Height="58" Click="Entfernen_Click" Margin="50,0,0,0" Foreground="White" FontWeight="Bold" FontSize="16" BorderBrush="#FFFFD100" FontStyle="Italic">
+            <Button Content="STORNIEREN" HorizontalAlignment="Left" VerticalAlignment="Top" Width="130" Height="58" Click="Stornieren_Click" Margin="50,0,0,0" Foreground="White" FontWeight="Bold" FontSize="16" BorderBrush="#FFFFF300" FontStyle="Italic">
                 <Button.Background>
                     <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
                         <GradientStop Color="Black" Offset="0"/>
@@ -41,11 +41,11 @@
                 </Button.Background>
             </Button>
         </StackPanel>
-        <ListBox x:Name="lb1" Margin="10,171,10,72" Background="Black" Foreground="White">
+        <ListBox x:Name="lb_produkte" Margin="10,215,10,72" Background="Black" Foreground="White">
             <ListBox.BorderBrush>
                 <LinearGradientBrush EndPoint="0.5,1" MappingMode="RelativeToBoundingBox" StartPoint="0.5,0">
                     <GradientStop Color="Black"/>
-                    <GradientStop Color="#FFD1B504" Offset="0.134"/>
+                    <GradientStop Color="#FFD1B504" Offset="0.297"/>
                 </LinearGradientBrush>
             </ListBox.BorderBrush>
         </ListBox>
@@ -58,6 +58,23 @@
             </TextBox.BorderBrush>
         </TextBox>
         <Label x:Name="lb_preis" Content="0 €" Margin="0,0,135,24" Foreground="White" FontWeight="Bold" Background="Black" BorderBrush="Red" HorizontalContentAlignment="Center" Height="26" VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="94"/>
+        <Button Content="An die Datei anhängen" Margin="290,43,0,0" VerticalAlignment="Top" Click="Button_Click" Foreground="White" FontWeight="Bold" Height="33" FontSize="14" HorizontalAlignment="Left" Width="162">
+            <Button.Background>
+                <RadialGradientBrush>
+                    <GradientStop Color="Black" Offset="1"/>
+                    <GradientStop Color="Red"/>
+                </RadialGradientBrush>
+            </Button.Background>
+        </Button>
+        <TextBox x:Name="tb1" HorizontalAlignment="Left" Margin="10,41,0,0" TextWrapping="Wrap" Width="265" GotFocus="TextBox_GotFocus" BorderBrush="#FFA08A00" SelectionBrush="{x:Null}" Height="34" VerticalAlignment="Top"/>
+        <TextBlock Margin="10,107,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Background="Black" Foreground="White" Height="85" HorizontalAlignment="Left" Width="402" FontWeight="Bold"><Run Text="0001;Handy"/><Run Text=";Samsung;Samsung Galaxy S9;5,3;34;690€"/><LineBreak/><InlineUIContainer>
+                <Label Background="Red" Content="Nr;Kategorie; Marke; Modell; Zoll; Speicherplatz; Preis" HorizontalAlignment="Left" Height="27" UseLayoutRounding="True" VerticalAlignment="Top" Width="402" d:DesignUseLayoutRounding="True"/>
+            </InlineUIContainer><LineBreak/><Run Text="0009;Laptop Tasche;ASUS;ASUS Notebook Tasche;15,0;schwarz;32,60€"/><InlineUIContainer>
+                <Label Background="Red" Content="Nr;Kategorie; Marke; Modell; Größe; Farbe; Preis" HorizontalAlignment="Left" Height="27" UseLayoutRounding="True" VerticalAlignment="Top" Width="402" d:DesignUseLayoutRounding="True"/>
+
+            </InlineUIContainer><LineBreak/></TextBlock>
+        <TextBlock HorizontalAlignment="Left" Margin="10,81,0,0" TextWrapping="Wrap" Text="Zum Beispiel:" VerticalAlignment="Top" Background="Red" Width="149" Height="26" FontStyle="Italic" TextDecorations="{x:Null}" TextAlignment="Center" LineHeight="10" FontWeight="Bold" FontSize="14"/>
+        <TextBlock HorizontalAlignment="Left" Margin="10,16,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Background="#FFA08A00" Width="169" Height="26" FontWeight="Bold" FontStyle="Italic" TextDecorations="{x:Null}" TextAlignment="Center" LineHeight="10" FontSize="16" Text="Produkt erstellen:"/>
 
     </Grid>
 </Window>

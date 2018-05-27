@@ -1,115 +1,106 @@
 ﻿using System;
 using System.Collections.ObjectModel;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 using System.IO;
 
 namespace Produkterkenner
 {
-    /// <summary>
-    /// Interaktionslogik für MainWindow.xaml
-    /// </summary>
     public partial class MainWindow : Window
     {
+
         ObservableCollection<Kategorie> obs = new ObservableCollection<Kategorie>();
+        Dictionary<string, Kategorie> dic = new Dictionary<string, Kategorie>();
 
         public void DateiLesen()
         {
-
             StreamReader dateiname = new StreamReader("Produktdetails.csv");
             string zeile;
-            bool ja = false;
-            string artikelnummer = tb_artikelnummer.Text;
-            string artikel = "";
-
-            //Solange die Zeile nicht leer ist, wird sie ausgeführt
+            //Solange die Zeile(dateiname) nicht leer ist, wird sie ausgeführt
             while ((zeile = dateiname.ReadLine()) != null)
             {
-                //Wenn die Artikelnummer an der Stelle [0] ist
-                if (artikelnummer == zeile.Split(';')[0])
-                {
-                    //ja, es kommt vor.. der gefundene artikel hat den wert der zeile
-                    ja = true;
-                    artikel = zeile;
-                    break;
-                }
-
-            }
-            dateiname.Close();
-
-            //Wir kontrollieren die Kategorie
-            if (ja == true)
-            {
-                //Array wird gesplittet, und dann wird es kontrolliert was an der Stelle [1] steht
-                string[] array = zeile.Split(';');
-                if (array[1] == "Handy")
-                {
-                    //Substring -> beginnt bei 0 und endet bei array[4].Length -1 weil am Ende ein "€" steht
-                    Handy h = new Handy(Convert.ToInt32(array[0]), array[1], array[2], array[3], Convert.ToDouble(array[4].Substring(0, array[4].Length)), Convert.ToInt32(array[5]), Convert.ToDouble(array[6].Substring(0, array[6].Length - 1)));
-                    //wird an obs hinzugefügt
-                    obs.Add(h);
-                    //Preise werden zusammengerechnet
-                    lb_preis.Content = String.Format("{0:0,0.00}", Convert.ToDouble(lb_preis.Content.ToString().Substring(0, lb_preis.Content.ToString().Length - 1)) + h.Preis) + "€";
-                }
+                if (zeile.Split(';')[1] == "Handy")
+                    dic.Add(zeile.Split(';')[0],
+                        new Handy(Convert.ToInt32(zeile.Split(';')[0]), zeile.Split(';')[1], zeile.Split(';')[2], zeile.Split(';')[3],
+                        Convert.ToDouble(zeile.Split(';')[4]), Convert.ToInt32(zeile.Split(';')[5]), Convert.ToDouble(zeile.Split(';')[6].Substring(0, zeile.Split(';')[6].Length - 1)))
+                    );
                 else
-                {
-                    Tasche t = new Tasche(Convert.ToInt32(array[0]), array[1], array[2], array[3], Convert.ToDouble(array[4].Substring(0, array[4].Length)), array[5], Convert.ToDouble(array[6].Substring(0, array[6].Length - 1)));
-                    obs.Add(t);
-                    lb_preis.Content = String.Format("{0:0,0.00}", Convert.ToDouble(lb_preis.Content.ToString().Substring(0, lb_preis.Content.ToString().Length - 1)) + t.Preis) + "€";
-                }
+                    dic.Add(zeile.Split(';')[0],
+                        new Tasche(Convert.ToInt32(zeile.Split(';')[0]), zeile.Split(';')[1], zeile.Split(';')[2], zeile.Split(';')[3],
+                        Convert.ToDouble(zeile.Split(';')[4]), zeile.Split(';')[5], Convert.ToDouble(zeile.Split(';')[6].Substring(0, zeile.Split(';')[6].Length - 1)))
+                    );
             }
 
-            else
-            {
-                throw new Exception("Artikelnummer nicht vorhanden!");
-            }
+            dateiname.Close();
         }
-
 
         public MainWindow()
         {
             InitializeComponent();
             //ObserveableCollection wird an die ListBox gebunden
-            lb1.ItemsSource = obs;
+            lb_produkte.ItemsSource = obs;
+            DateiLesen();
         }
+
+        private void Artikel_Suchen()
+        {
+            try
+            {
+
+                obs.Add(dic[tb_artikelnummer.Text]);
+                lb_preis.Content = String.Format("{0:0,0.00}", Convert.ToDouble(lb_preis.Content.ToString().Substring(0, lb_preis.Content.ToString().Length - 1)) + dic[tb_artikelnummer.Text].Preis) + "€";
+            }
+            catch
+            {
+                throw new Exception("KEINE gültige Artikelnummer!");
+            }
+        }
+
 
         private void Hinzufuegen_Click(object sender, RoutedEventArgs e)
         {
-            DateiLesen();
+            Artikel_Suchen();
         }
-        
 
-        private void Entfernen_Click(object sender, RoutedEventArgs e)
+        private void Stornieren_Click(object sender, RoutedEventArgs e)
         {
             //Ausgewähltes Produkt
-            int index = lb1.SelectedIndex;
+            int index = lb_produkte.SelectedIndex;
             //wenn keines ausgewählt wurde -> Exception
             if (index < 0)
-                throw new Exception("Kein Element ausgewählt");
+                throw new Exception("Kein Element zum Entfernen ausgewählt!!!");
             else
             {
-                //Der ausgewählte Element wird vom Preis subtrahiert
+                //Das ausgewählte Element wird vom Preis subtrahiert
                 lb_preis.Content = String.Format("{0:0,0.00}", Convert.ToDouble(lb_preis.Content.ToString().Substring(0, lb_preis.Content.ToString().Length - 1)) - obs[index].Preis) + "€";
                 //Löscht das Element
                 obs.RemoveAt(index);
+                MessageBox.Show("ERFOLGREICH ENTFERNT !!!");
+
             }
         }
 
         private void Beenden_Click(object sender, RoutedEventArgs e)
         {
+            MessageBox.Show("AUF WIEDERSEHEN !!!");
             Close();
         }
 
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            StreamWriter writer = new StreamWriter("Produktdetails.csv", true);
+            writer.WriteLine(tb1.Text);
+            MessageBox.Show("ERFOLGREICH !!!");
+            MessageBox.Show("WICHTIG!!!\nStarten Sie das Programm erneut, damit Sie Ihr Produkt scannen können!");
+
+            writer.Close();
+        }
+        
+        private void TextBox_GotFocus(object sender, RoutedEventArgs e)
+        {
+            MessageBox.Show("WICHTIG!!!\nAchten Sie bitte auf die richtige Schreibweise !!!");
+            MessageBox.Show("WICHTIG!!!\nSehen Sie sich bitte JETZT in 'Produktdetails.csv' an, was die LETZTE SERIENNUMMER ist !!!");
+
+        }
     }
 }
